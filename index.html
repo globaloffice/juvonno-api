@@ -207,7 +207,7 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen-3e6c3420.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-b3809ca5.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-fd13a5d6.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-c5541673.js"></script>
   </head>
@@ -249,6 +249,14 @@
           </li>
           <li>
             <a href="#juvonno-resources" class="toc-h1 toc-link" data-title="Juvonno Resources">Juvonno Resources</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#additional-mapping-fields" class="toc-h2 toc-link" data-title="Additional Mapping Fields">Additional Mapping Fields</a>
+                  </li>
+                  <li>
+                    <a href="#communication-between-resources" class="toc-h2 toc-link" data-title="Communication Between Resources">Communication Between Resources</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#crud-operations" class="toc-h1 toc-link" data-title="CRUD Operations">CRUD Operations</a>
@@ -280,9 +288,6 @@
             <a href="#customers" class="toc-h1 toc-link" data-title="Customers">Customers</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#endpoint" class="toc-h2 toc-link" data-title="Endpoint">Endpoint</a>
-                  </li>
-                  <li>
                     <a href="#create-a-new-customer" class="toc-h2 toc-link" data-title="Create a new Customer">Create a new Customer</a>
                   </li>
                   <li>
@@ -290,6 +295,14 @@
                   </li>
                   <li>
                     <a href="#retrieve-a-customer-using-chart-num" class="toc-h2 toc-link" data-title="Retrieve a Customer using Chart Num">Retrieve a Customer using Chart Num</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#branches" class="toc-h1 toc-link" data-title="Branches">Branches</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-all-branches" class="toc-h2 toc-link" data-title="List all Branches">List all Branches</a>
                   </li>
               </ul>
           </li>
@@ -382,12 +395,21 @@ You must replace <code>fhOkwr12kfslsdqwe8</code> with your personal API key.
     </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
+</span></code></pre></div><h3 id='additional-mapping-fields'>Additional Mapping Fields</h3>
 <p>Sometimes we also allow an additional field which users can use to match up against their own IDs in their system. 
 For example, the Customer Resource on the right has a <strong>Juvonno ID</strong> of <strong>21</strong> and an additional identifier <strong>chart &gt; num</strong> of <strong>&quot;CHART1234&quot;</strong> (which can represent the Customer&#39;s ID in your system).</p>
 
 <p>It is not always the case that we provide an additional mapping field. One example is the &quot;Appointment&quot; Resource. &quot;Appointment&quot; does not have a &quot;number&quot; or a &quot;name&quot;. The only way to distinguish between unique appointments in Juvonno is based on theirs Juvonno ID.
 Hence in some cases it relies totally on the Juvonno ID in order for a resource to be able to get retrieved or modified. Therefore, though it is not mandatory, but we do <strong>recommend storing this ID field into your own system</strong>.</p>
+<h3 id='communication-between-resources'>Communication Between Resources</h3>
+<p>Resources in Juvonno communicate with each other through their <b>unique identifier(s)</b>. You can always guarantee communication between resources using their  <strong>Juvonno ID</strong>.</p>
+<h4 id='example'>Example</h4>
+<p>If we want to assign Branch &quot;Brandon Clinic&quot; to Staff Member &quot;Jane Doe&quot;, we can use the branch&#39;s Juvonno ID in the customer&#39;s update request body like this: 
+<code>
+{
+    &quot;branch_id&quot;: 1
+}
+</code></p>
 <h1 id='crud-operations'>CRUD Operations</h1>
 <p>We follow standard RESTful CRUD operations. There will be a corresponding<br>
   <code>/api/ { RESOURCES - NAME }</code><br>
@@ -395,6 +417,20 @@ collection of CRUD operations per Juvonno Object.
 <aside class="notice">
 CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and &quot;Delete&quot;
 </aside></p>
+
+<ul>
+<li><p>The <b>Resource&#39;s root endpoint</b> will always be a <b>Plural Noun</b>:</p>
+
+<ul>
+<li>/api/<strong>customers</strong></li>
+<li>/api/<strong>appointments</strong></li>
+<li>/api/<strong>staff</strong>
+<br><br></li>
+</ul></li>
+<li><p>The <b>HTTP Method</b> defines the <b>actual action</b> you can perform on the resource:</p></li>
+</ul>
+
+<p><img src="images/crud-f6dc47a5.png" title="HTTP Method Summary" alt="alt text" /></p>
 <h2 id='create-a-new-resource'>Create a new Resource</h2>
 <p>Always use <span class='http-post'>POST</span> to create a new resource.</p>
 
@@ -579,12 +615,57 @@ This error section will be updated frequently.
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
-<h1 id='resources'>Resources</h1><h1 id='customers'>Customers</h1><h3 id='endpoint'>Endpoint</h3>
+<h1 id='resources'>Resources</h1><h1 id='customers'>Customers</h1>
+<p><b><u>Endpoint</u></b></p>
+
 <p><code>/api/customers</code></p>
 
 <p>A Customer represents a &quot;Patient&quot;. You can create a new customer, retrieve or modify an existing customer using its <strong>Juvonno ID</strong> or its <strong>Chart Num</strong>. </p>
 
 <p>Only <strong>Juvonno ID</strong> is treated as a unique identifier in our system. If you&#39;re querying using <strong>Chart Num</strong>, you must supply a unique existing number or else the program will throw corresponding error codes. </p>
+
+<p><br></p>
+
+<p><b><u>Endpoint Summary</u></b></p>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Action</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><span class='http-post'>POST</span></td>
+<td>/api/<span class='pink'>customers</span></td>
+<td>create a <b>new customer</b></td>
+</tr>
+<tr>
+<td><span class='http-get'>GET</span></td>
+<td>/api/<span class='pink'>customers</span>/<strong>21</strong></span></td>
+<td>retrieve a <b>single</b> customer with ID <b>21</b></td>
+</tr>
+<tr>
+<td><span class='http-get'>GET</span></td>
+<td>/api/<span class='pink'>customers</span>/<span class='blue'>chart</span>/<strong>CHART1234</strong></span></td>
+<td>retrieve a <b>single</b> customer with Chart # <b>CHART1234</b></td>
+</tr>
+<tr>
+<td><span class='http-put'>PUT</span></td>
+<td>/api/<span class='pink'>customers</span>/<strong>21</strong></td>
+<td>update a customer with ID <b>21</b></td>
+</tr>
+<tr>
+<td><span class='http-put'>PUT</span></td>
+<td>/api/<span class='pink'>customers</span>/<span class='blue'>chart</span>/<strong>CHART1234</strong></span></td>
+<td>update a <b>single</b> customer with Chart # <b>CHART1234</b></td>
+</tr>
+<tr>
+<td><span class='http-delete'>DELETE</span></td>
+<td>/api/<span class='pink'>customers</span>/<strong>21</strong></td>
+<td>delete customer with ID <b>21</b></td>
+</tr>
+</tbody></table>
 <h2 id='create-a-new-customer'>Create a new Customer</h2><h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://tenant-id.juvonno.com/api/customers</code></p>
 
@@ -642,6 +723,8 @@ This error section will be updated frequently.
 <li>application/x-www-form-urlencoded</li>
 </ul>
 
+<p><br></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -687,7 +770,7 @@ This error section will be updated frequently.
 <tr>
 <td>branch_id</td>
 <td>N</td>
-<td>You can use either &quot;branch_id&quot;, &quot;branch_code&quot; or &quot;branch_name&quot;</td>
+<td>This refers to the Branch&#39;s Juvonno ID. See <a href="#branches">Branch Resource</a> to learn more.<br>You can use either &quot;branch_id&quot;, &quot;branch_code&quot; or &quot;branch_name&quot;</td>
 </tr>
 <tr>
 <td>branch_code</td>
@@ -798,6 +881,53 @@ This error section will be updated frequently.
 <tr>
 <td>number</td>
 <td>The chart number of the customer to be retrieved</td>
+</tr>
+</tbody></table>
+<h1 id='branches'>Branches</h1>
+<p><b>Endpoint</b></p>
+
+<p><code>/api/branches</code></p>
+
+<p>A Branch represents a &quot;Clinic Location&quot;. You can create a new branch, retrieve or modify an existing branch using its <strong>Juvonno ID</strong>. </p>
+<h2 id='list-all-branches'>List all Branches</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://tenant-id.juvonno.com/api/branches</code></p>
+
+<blockquote>
+<p>List all Branches: </p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">GET https://tenant-id.juvonno.com/api/branches?api_key={YOUR_API_KEY}
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>cURL <span class="nt">-X</span> POST <span class="s2">"https://tenant-id.juvonno.com/api/branches
+?api_key={YOUR_API_KEY}"</span>
+</code></pre></div>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALBCLI"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alberta Clinic"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> 
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BRNCLI"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brandon Clinic"</span><span class="w">
+    </span><span class="p">}</span><span class="w">   
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint lists all branches in the system.</p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api_key</td>
+<td>Always include your api_key in all of your requests.</td>
 </tr>
 </tbody></table>
 
