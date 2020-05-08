@@ -7,6 +7,17 @@ collection of CRUD operations per Juvonno Object.
 CRUD stands for "Create", "Retrieve", "Update" and "Delete"
 </aside>
 
+- The <b>Resource's root endpoint</b> will always be a <b>Plural Noun</b>:
+
+    - /api/**customers**
+    - /api/**appointments**
+    - /api/**staff**
+<br>    
+- The <b>HTTP Method</b> defines the <b>actual action</b> you can perform on the resource:
+
+![alt text](../images/crud.png "HTTP Method Summary")
+
+
 ## Create a new Resource
 
 Always use <span class='http-post'>POST</span> to create a new resource.

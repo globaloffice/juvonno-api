@@ -2,13 +2,26 @@
 
 # Customers
 
-###Endpoint
+<b><u>Endpoint</u></b>
 
 `/api/customers`
 
 A Customer represents a "Patient". You can create a new customer, retrieve or modify an existing customer using its **Juvonno ID** or its **Chart Num**. 
 
 Only **Juvonno ID** is treated as a unique identifier in our system. If you're querying using **Chart Num**, you must supply a unique existing number or else the program will throw corresponding error codes. 
+
+<br>
+
+<b><u>Endpoint Summary</u></b>
+
+Method | Endpoint | Action
+-------|----------|-------
+<span class='http-post'>POST</span> | /api/<span class='pink'>customers</span> | create a <b>new customer</b>
+<span class='http-get'>GET</span> | /api/<span class='pink'>customers</span>/**21**</span> | retrieve a <b>single</b> customer with ID <b>21</b>
+<span class='http-get'>GET</span> | /api/<span class='pink'>customers</span>/<span class='blue'>chart</span>/**CHART1234**</span> | retrieve a <b>single</b> customer with Chart # <b>CHART1234</b>
+<span class='http-put'>PUT</span> | /api/<span class='pink'>customers</span>/**21** | update a customer with ID <b>21</b>
+<span class='http-put'>PUT</span> | /api/<span class='pink'>customers</span>/<span class='blue'>chart</span>/**CHART1234**</span> | update a <b>single</b> customer with Chart # <b>CHART1234</b>
+<span class='http-delete'>DELETE</span> | /api/<span class='pink'>customers</span>/**21** | delete customer with ID <b>21</b>
 
 ## Create a new Customer
 
@@ -70,6 +83,8 @@ api_key | Always include your api_key in all of your requests.
 - application/json
 - application/x-www-form-urlencoded
 
+<br>
+
 Parameter | Required | Description
 --------- | -------- | -----------
 first_name | Y | Customer's first name
@@ -79,7 +94,7 @@ gender | Y | Must be one of "male", "female", "private" or "unknown"
 chart_num | N | This can be used to match against your own customer's ID
 preferred_language | N | Must be one of "english" or "french"
 status | N | Must be one of "active", "inactive", "discharged" or "deleted"
-branch_id | N | You can use either "branch_id", "branch_code" or "branch_name" 
+branch_id | N | This refers to the Branch's Juvonno ID. See [Branch Resource](#branches) to learn more.<br>You can use either "branch_id", "branch_code" or "branch_name" 
 branch_code | N | You can use either "branch_id", "branch_code" or "branch_name" 
 branch_name | N | You can use either "branch_id", "branch_code" or "branch_name" 
 
