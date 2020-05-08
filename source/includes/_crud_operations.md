@@ -9,7 +9,7 @@ CRUD stands for "Create", "Retrieve", "Update" and "Delete"
 
 ## Create a new Resource
 
-Always use **POST** to create a new resource.
+Always use <span class='http-post'>POST</span> to create a new resource.
 
 `POST https://tenant-id.juvonno.com/api/{RESOURCES}/`
 
@@ -47,7 +47,7 @@ api_key | Always include your api_key in all of your requests.
 
 ## Retrieve an existing Resource
 
-Always use **GET** to retrieve a resource.
+Always use <span class='http-get'>GET</span> to retrieve a resource.
 
 `GET https://tenant-id.juvonno.com/api/{RESOURCES}/{RESOURCE_JUVONNO_ID}`
 
@@ -71,7 +71,7 @@ api_key | Always include your api_key in all of your requests.
 
 ## Update an existing Resource
 
-Always use **PUT** to update an existing resource.
+Always use <span class='http-put'>PUT</span> to update an existing resource.
 
 `PUT https://tenant-id.juvonno.com/api/{RESOURCES}/{RESOURCE_JUVONNO_ID}`
 
@@ -107,7 +107,7 @@ api_key | Always include your api_key in all of your requests.
 
 ## Delete an existing Resource
 
-Always use **DELETE** to delete a resource.
+Always use <span class='http-delete'>DELETE</span> to delete a resource.
 
 `DELETE https://tenant-id.juvonno.com/api/{RESOURCES}/{RESOURCE_JUVONNO_ID}`
 

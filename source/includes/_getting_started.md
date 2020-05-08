@@ -1,7 +1,7 @@
 # Getting Started
 ## Introduction
 
-Juvonno API is a collection of RESTful endpoints, which communicate directly with our back-end Business Objects, thus allowing users to Create, Read, Update & Delete (CRUD) the corresponding resources. 
+**Juvonno API** is a collection of RESTful endpoints, which communicate directly with our back-end Business Objects, thus allowing users to **Create, Read, Update & Delete** (CRUD) the corresponding resources. 
 
 Juvonno API has strict validations and will throw detailed messages upon encountering any errors, thus enabling developers with better integration to our Juvonno App. 
 
@@ -25,10 +25,12 @@ These URLs represent various **resources**. A Resource represents a **Juvonno Bu
 
 We utilize various HTTP Methods to perform different operations on a resource:
 
-- GET: to retrieve a resource (or sometimes a list of resources)
-- POST: to create a new resource 
-- PUT: to update an existing resource
-- DELETE: to delete an existing resource    
+Method | Function
+--------- | ------- |
+<span class="http-get">GET</span> | to retrieve a resource (or sometimes a list of resources)
+<span class="http-post">POST</span> | to create a new resource 
+<span class="http-put">PUT</span> | to update an existing resource
+<span class="http-delete">DELETE</span> | to delete an existing resource    
 
 ## Authentication
 

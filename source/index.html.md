@@ -12,8 +12,8 @@ includes:
   - getting_started
   - juvonno_resources
   - crud_operations
+  - juv_errors
   - customers
-  - errors
 
 search: true
 ---

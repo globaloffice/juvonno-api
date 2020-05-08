@@ -24,6 +24,19 @@ under the License.
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
 
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%
+}
+
+@import url("https://fonts.googleapis.com/css?family=Raleway");html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%
+}
+
+
 html, body {
   color: $main-text;
   padding: 0;
@@ -61,7 +74,7 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
-  border-right: 1px solid $border-color;
+  border-right: 2px solid $nav-border;
 
   // language selector for mobile devices
   .lang-selector {
@@ -76,9 +89,10 @@ html, body {
   .logo {
     display: block;
     max-width: 100%;
-    margin-left: 25px;
-    margin-top: 10px;
+    margin-left: 15px;
+    margin-top: 18px;
     margin-bottom: $logo-margin;
+    //background-color: #4c5757;
   }
 
   &>.search {
@@ -135,7 +149,6 @@ html, body {
       }
     }
   }
-
 
   // The Table of Contents is composed of multiple nested
   // unordered lists.  These styles remove the default
@@ -274,9 +287,13 @@ html, body {
   }
 
   .lang-selector {
+    padding-left: 30px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
+    //border-bottom: 5px solid $lang-select-active-bg;
   }
 }
 
@@ -301,6 +318,7 @@ html, body {
     &.active {
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
+
     }
   }
 
@@ -309,6 +327,14 @@ html, body {
     clear: both;
     display: block;
   }
+}
+
+.lang-selector > a.active {
+  //background-color: #e2662a;
+  //border: 1px solid #e2662a;
+  background-color: #E1AD06;
+  border: 1px solid #E1AD06;
+  border-radius: 10px;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -349,14 +375,17 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 25px;
-    padding-top: 0.5em;
+    font-size: 30px;
+    font-weight: 500;
+    padding-top: 1.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
-    background-color: #fbfcfc;
+    //border-bottom: 1px solid $border-color;
+    //background-color: #fbfcfc;
+    background-color: #fff;
+    line-height: 50px;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -366,14 +395,15 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 19px;
+    font-size: 24px;
+    font-weight: 300;
     margin-top: 4em;
     margin-bottom: 1em;
-    border-top: 1px solid $border-color;
+    border-top: 0px solid $border-color;
     padding-top: 1.2em;
     padding-bottom: 0.5em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
-    //box-shadow: 0px 24px 3px -24px #ccc;
+    box-shadow: 0px 30px 3px -30px #ccc;
   }
 
   // h2s right after h1s should bump right up
@@ -433,6 +463,12 @@ html, body {
     tr:nth-child(even)>td {
       background-color: lighten($main-bg,2.4%);
     }
+
+    tr {
+      td:first-child {
+        font-weight: bold;
+      }
+    }
   }
 
   dt {
@@ -458,6 +494,7 @@ html, body {
     border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
+    color: #F67670;
   }
 
   pre>code {
@@ -473,6 +510,8 @@ html, body {
     background: $aside-notice-bg;
     line-height: 1.6;
     color: #fff;
+    margin-left: 38px;
+    margin-right: 53.5%;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -553,6 +592,91 @@ html, body {
       color: #eee;
     }
   }
+}
+
+// JSON
+.highlight > .json .nl {
+  background-color:  transparent !important;
+  color: #A6E22E;
+}
+
+.highlight > .json .p {
+  color: #fafafa;
+}
+
+.highlight > .json .s2 {
+  color: #E18B26;
+}
+
+// HTTP
+.highlight > .http span {
+  color: #f2e65e;
+}
+
+#getting-started {
+  //margin-top: 10px;
+}
+
+// SHELL
+.highlight > .shell code {
+  color: #fff;
+}
+
+// CODE inside aside
+.notice > code {
+  color: #fafafa;
+}
+
+// SPECIAL NAVIGATIOIN EFFECT
+.toc-link {
+  line-height: 30px;
+}
+
+.toc-link[data-title~="Getting"] {
+  margin-top: 10px;
+}
+
+.toc-link[data-title="Resources"] {
+  padding-top: 30px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+#resources {
+  margin-top: 100px;
+  margin-bottom: 0px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#customers {
+  margin-top: 0px;
+  border: 0px;
+  padding-top: 10px;
+}
+
+strong {
+  color: #56a127;
+}
+
+.http-get {
+  font-weight: bold;
+  color: green;
+}
+
+.http-post {
+  font-weight: bold;
+  color: goldenrod;
+}
+
+.http-put {
+  font-weight: bold;
+  color: blue;
+}
+
+.http-delete {
+  font-weight: bold;
+  color: orangered;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

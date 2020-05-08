@@ -1,7 +1,8 @@
+# Resources
 
 # Customers
 
-**Endpoint:**
+###Endpoint
 
 `/api/customers`
 
