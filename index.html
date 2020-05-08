@@ -207,8 +207,8 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen-f217e90d.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-bccf8c07.css" rel="stylesheet" media="print" />
+    <link href="stylesheets/screen-3e6c3420.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-fd13a5d6.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-c5541673.js"></script>
   </head>
 
@@ -220,7 +220,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-ff82000a.png" class="logo" alt="Logo" />
+      <img src="images/juvonno-logo-black-04e89b66.png" class="logo" alt="Juvonno logo black" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">cURL</a>
               <a href="#" data-language-name="http">http</a>
@@ -271,8 +271,17 @@
               </ul>
           </li>
           <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+          <li>
+            <a href="#resources" class="toc-h1 toc-link" data-title="Resources">Resources</a>
+          </li>
+          <li>
             <a href="#customers" class="toc-h1 toc-link" data-title="Customers">Customers</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#endpoint" class="toc-h2 toc-link" data-title="Endpoint">Endpoint</a>
+                  </li>
                   <li>
                     <a href="#create-a-new-customer" class="toc-h2 toc-link" data-title="Create a new Customer">Create a new Customer</a>
                   </li>
@@ -284,9 +293,6 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='https://app.swaggerhub.com/apis-docs/globaloffice/juvonno/2.0.1#/'>Swaggerhub's API Reference</a></li>
@@ -296,7 +302,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='getting-started'>Getting Started</h1><h2 id='introduction'>Introduction</h2>
-<p>Juvonno API is a collection of RESTful endpoints, which communicate directly with our back-end Business Objects, thus allowing users to Create, Read, Update &amp; Delete (CRUD) the corresponding resources. </p>
+<p><strong>Juvonno API</strong> is a collection of RESTful endpoints, which communicate directly with our back-end Business Objects, thus allowing users to <strong>Create, Read, Update &amp; Delete</strong> (CRUD) the corresponding resources. </p>
 
 <p>Juvonno API has strict validations and will throw detailed messages upon encountering any errors, thus enabling developers with better integration to our Juvonno App. </p>
 
@@ -316,12 +322,29 @@ This guide is currently in development.
 
 <p>We utilize various HTTP Methods to perform different operations on a resource:</p>
 
-<ul>
-<li>GET: to retrieve a resource (or sometimes a list of resources)</li>
-<li>POST: to create a new resource </li>
-<li>PUT: to update an existing resource</li>
-<li>DELETE: to delete an existing resource<br></li>
-</ul>
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Function</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><span class="http-get">GET</span></td>
+<td>to retrieve a resource (or sometimes a list of resources)</td>
+</tr>
+<tr>
+<td><span class="http-post">POST</span></td>
+<td>to create a new resource</td>
+</tr>
+<tr>
+<td><span class="http-put">PUT</span></td>
+<td>to update an existing resource</td>
+</tr>
+<tr>
+<td><span class="http-delete">DELETE</span></td>
+<td>to delete an existing resource</td>
+</tr>
+</tbody></table>
 <h2 id='authentication'>Authentication</h2>
 <p>Juvonno uses API keys to allow access to the API. You can register a new API key under your own profile in your Juvonno App.</p>
 
@@ -373,7 +396,7 @@ collection of CRUD operations per Juvonno Object.
 CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and &quot;Delete&quot;
 </aside></p>
 <h2 id='create-a-new-resource'>Create a new Resource</h2>
-<p>Always use <strong>POST</strong> to create a new resource.</p>
+<p>Always use <span class='http-post'>POST</span> to create a new resource.</p>
 
 <p><code>POST https://tenant-id.juvonno.com/api/{RESOURCES}/</code></p>
 
@@ -410,7 +433,7 @@ CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and
 <li>application/x-www-form-urlencoded</li>
 </ul>
 <h2 id='retrieve-an-existing-resource'>Retrieve an existing Resource</h2>
-<p>Always use <strong>GET</strong> to retrieve a resource.</p>
+<p>Always use <span class='http-get'>GET</span> to retrieve a resource.</p>
 
 <p><code>GET https://tenant-id.juvonno.com/api/{RESOURCES}/{RESOURCE_JUVONNO_ID}</code></p>
 
@@ -433,7 +456,7 @@ CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and
 </tr>
 </tbody></table>
 <h2 id='update-an-existing-resource'>Update an existing Resource</h2>
-<p>Always use <strong>PUT</strong> to update an existing resource.</p>
+<p>Always use <span class='http-put'>PUT</span> to update an existing resource.</p>
 
 <p><code>PUT https://tenant-id.juvonno.com/api/{RESOURCES}/{RESOURCE_JUVONNO_ID}</code></p>
 
@@ -468,7 +491,7 @@ CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and
 <li>application/x-www-form-urlencoded</li>
 </ul>
 <h2 id='delete-an-existing-resource'>Delete an existing Resource</h2>
-<p>Always use <strong>DELETE</strong> to delete a resource.</p>
+<p>Always use <span class='http-delete'>DELETE</span> to delete a resource.</p>
 
 <p><code>DELETE https://tenant-id.juvonno.com/api/{RESOURCES}/{RESOURCE_JUVONNO_ID}</code></p>
 
@@ -514,9 +537,49 @@ CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and
 <p>If your application has two branches with the same name “Brandon Clinic”, Juvonno API will return an Error with a detailed message asking you to supply a unique &quot;branch_name&quot; or use &quot;branch_id&quot; (Juvonno ID) instead. </p>
 
 <p>If your application has no branches with the name “Brandon Clinic”, Juvonno API will return an Error telling you that it was unable to find any record with such name. </p>
-<h1 id='customers'>Customers</h1>
-<p><strong>Endpoint:</strong></p>
+<h1 id='errors'>Errors</h1>
+<aside class="warning">
+This error section will be updated frequently.
+</aside>
 
+<p>Juvonno API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- Your do not have enough permission to access this resource.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified resource could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+<h1 id='resources'>Resources</h1><h1 id='customers'>Customers</h1><h3 id='endpoint'>Endpoint</h3>
 <p><code>/api/customers</code></p>
 
 <p>A Customer represents a &quot;Patient&quot;. You can create a new customer, retrieve or modify an existing customer using its <strong>Juvonno ID</strong> or its <strong>Chart Num</strong>. </p>
@@ -561,7 +624,7 @@ CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint creates a new customer.</p>
-<h3 id='query-parameters-5'>Query Parameters</h3>
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -573,7 +636,7 @@ CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and
 <td>Always include your api_key in all of your requests.</td>
 </tr>
 </tbody></table>
-<h3 id='request-body-3'>Request Body</h3>
+<h3 id='request-body'>Request Body</h3>
 <ul>
 <li>application/json</li>
 <li>application/x-www-form-urlencoded</li>
@@ -663,7 +726,7 @@ CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="w">                 
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='query-parameters-6'>Query Parameters</h3>
+</span></code></pre></div><h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -713,7 +776,7 @@ CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="w">                 
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='query-parameters-7'>Query Parameters</h3>
+</span></code></pre></div><h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -735,48 +798,6 @@ CRUD stands for &quot;Create&quot;, &quot;Retrieve&quot;, &quot;Update&quot; and
 <tr>
 <td>number</td>
 <td>The chart number of the customer to be retrieved</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="warning">
-This error section will be updated frequently.
-</aside>
-
-<p>Juvonno API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- Your do not have enough permission to access this resource.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified resource could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 
