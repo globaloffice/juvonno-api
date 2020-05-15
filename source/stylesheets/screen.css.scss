@@ -36,6 +36,7 @@ under the License.
   -webkit-text-size-adjust: 100%
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 html, body {
   color: $main-text;
@@ -72,7 +73,7 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
   border-right: 2px solid $nav-border;
 
@@ -187,7 +188,7 @@ html, body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .toc-footer {
@@ -376,6 +377,7 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 30px;
+    color: $header-txt-color;
     font-weight: 500;
     padding-top: 1.5em;
     padding-bottom: 0.5em;
@@ -397,7 +399,7 @@ html, body {
     @extend %header-font;
     font-size: 24px;
     font-weight: 300;
-    margin-top: 4em;
+    margin-top: 2em;
     margin-bottom: 1em;
     border-top: 0px solid $border-color;
     padding-top: 1.2em;
