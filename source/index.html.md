@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - http
 
 toc_footers:
-  - <a href='https://app.swaggerhub.com/apis-docs/globaloffice/juvonno/2.0.1#/'>Swaggerhub's API Reference</a>
+  - <a href='https://app.swaggerhub.com/apis-docs/globaloffice/juvonno/'>Swaggerhub's API Reference</a>
 
 includes:
   - getting_started
