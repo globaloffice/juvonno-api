@@ -13,7 +13,7 @@ This guide is currently in development.
 
 This document will serve as a guideline & an introduction to our Juvonno API & our business logic.
 
-For detailed API Document of all of our available Endpoints, please use this [reference here in Swaggerhub](https://app.swaggerhub.com/apis-docs/globaloffice/juvonno/2.0.1). 
+For detailed API Document of all of our available Endpoints, please use this [reference here in Swaggerhub](https://app.swaggerhub.com/apis-docs/globaloffice/juvonno/). 
 
 ## What is a REST API?
 
