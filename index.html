@@ -296,6 +296,9 @@
                   <li>
                     <a href="#retrieve-a-customer-using-chart-num" class="toc-h2 toc-link" data-title="Retrieve a Customer using Chart Num">Retrieve a Customer using Chart Num</a>
                   </li>
+                  <li>
+                    <a href="#customer-custom-fields" class="toc-h2 toc-link" data-title="Customer Custom Fields">Customer Custom Fields</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -615,7 +618,9 @@ This error section will be updated frequently.
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
-<h1 id='resources'>Resources</h1><h1 id='customers'>Customers</h1>
+<h1 id='resources'>Resources</h1>
+<p>The following sections document each resource endpoint and its supported operations.</p>
+<h1 id='customers'>Customers</h1>
 <p><b><u>Endpoint</u></b></p>
 
 <p><code>/api/customers</code></p>
@@ -882,7 +887,63 @@ This error section will be updated frequently.
 <td>number</td>
 <td>The chart number of the customer to be retrieved</td>
 </tr>
-</tbody></table>
+</tbody></table><h2 id='customer-custom-fields'>Customer Custom Fields</h2>
+<p>The API supports a <code>custom_fields</code> array on customer write and read operations, so clients can set and retrieve customer custom field values using ID/value pairs.</p>
+<h3 id='how-it-works'>How It Works</h3>
+<ul>
+<li>Each entry has the shape <code>{ custom_field_id, value }</code></li>
+<li><code>custom_field_id</code>: integer ID of an existing customer custom field definition</li>
+<li><code>value</code>: string, nullable</li>
+<li>Partial merge behavior: only included custom field IDs are changed; omitted IDs remain as-is</li>
+<li>To clear a value, send <code>null</code> for the <code>value</code> of that <code>custom_field_id</code></li>
+</ul>
+<h3 id='where-to-use-it'>Where To Use It</h3>
+<ul>
+<li><code>POST /customers</code> (create customer)</li>
+<li><code>PUT /customers/{customerId}</code> (update customer)</li>
+<li><code>PUT /customers/chart/{chartNumber}</code> (update customer by chart number)</li>
+</ul>
+<p>Customer response objects also include <code>custom_fields</code> as current ID/value pairs.</p>
+<h3 id='example-update-one-custom-field-clear-another'>Example: Update One Custom Field, Clear Another</h3>
+<h4 id='request'>Request</h4>
+<pre><code>{
+  "first_name": "Alex",
+  "last_name": "Miller",
+  "date_of_birth": "1990-05-10",
+  "gender": "male",
+  "custom_fields": [
+    {
+      "custom_field_id": 123,
+      "value": "Prefers evening appointments"
+    },
+    {
+      "custom_field_id": 456,
+      "value": null
+    }
+  ]
+}</code></pre>
+<h4 id='behavior'>Behavior</h4>
+<ul>
+<li>Field <code>123</code> is set to <code>"Prefers evening appointments"</code></li>
+<li>Field <code>456</code> is cleared</li>
+<li>Any other existing custom fields on that customer are unchanged</li>
+</ul>
+<h4 id='typical-response-fragment'>Typical Response Fragment</h4>
+<pre><code>{
+  "id": 10025,
+  "first_name": "Alex",
+  "last_name": "Miller",
+  "custom_fields": [
+    { "custom_field_id": 123, "value": "Prefers evening appointments" },
+    { "custom_field_id": 456, "value": null }
+  ]
+}</code></pre>
+<h3 id='notes'>Notes</h3>
+<ul>
+<li><code>custom_field_id</code> must refer to a valid existing customer custom field definition</li>
+<li>Use <code>null</code> only when you intentionally want to clear the stored value</li>
+<li>Omitted custom fields are preserved (not removed or reset)</li>
+</ul>
 <h1 id='branches'>Branches</h1>
 <p><b>Endpoint</b></p>
 
