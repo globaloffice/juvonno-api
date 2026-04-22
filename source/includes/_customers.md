@@ -1,5 +1,7 @@
 # Resources
 
+A list of documented API resources is provided below.
+
 # Customers
 
 <b><u>Endpoint</u></b>
@@ -195,3 +197,72 @@ api_key | Always include your api_key in all of your requests.
 Parameter | Description
 --------- | -----------
 number | The chart number of the customer to be retrieved
+
+## Customer Custom Fields
+
+The API supports a `custom_fields` array on customer write and read operations, so clients can set and retrieve customer custom field values using ID/value pairs.
+
+### How It Works
+
+- Each entry has the shape `{ custom_field_id, value }`
+- `custom_field_id`: integer ID of an existing customer custom field definition
+- `value`: string, nullable
+- Partial merge behavior: only included custom field IDs are changed; omitted IDs remain as-is
+- To clear a value, send `null` for the `value` of that `custom_field_id`
+
+### Where To Use It
+
+- `POST /customers` (create customer)
+- `PUT /customers/{customerId}` (update customer)
+- `PUT /customers/chart/{chartNumber}` (update customer by chart number)
+
+Customer response objects also include `custom_fields` as current ID/value pairs.
+
+### Example: Update One Custom Field, Clear Another
+
+#### Request
+
+```json
+{
+  "first_name": "Alex",
+  "last_name": "Miller",
+  "date_of_birth": "1990-05-10",
+  "gender": "male",
+  "custom_fields": [
+    {
+      "custom_field_id": 123,
+      "value": "Prefers evening appointments"
+    },
+    {
+      "custom_field_id": 456,
+      "value": null
+    }
+  ]
+}
+```
+
+#### Behavior
+
+- Field `123` is set to `"Prefers evening appointments"`
+- Field `456` is cleared
+- Any other existing custom fields on that customer are unchanged
+
+#### Typical Response Fragment
+
+```json
+{
+  "id": 10025,
+  "first_name": "Alex",
+  "last_name": "Miller",
+  "custom_fields": [
+    { "custom_field_id": 123, "value": "Prefers evening appointments" },
+    { "custom_field_id": 456, "value": null }
+  ]
+}
+```
+
+### Notes
+
+- `custom_field_id` must refer to a valid existing customer custom field definition
+- Use `null` only when you intentionally want to clear the stored value
+- Omitted custom fields are preserved (not removed or reset)
